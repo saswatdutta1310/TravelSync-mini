@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
 
     const prompt = `You are an expert travel planner. Create a day-by-day itinerary for a trip.
 Destination: ${destination}
@@ -21,6 +21,8 @@ Budget: ${budget}
 Travel Style: ${tripType}
 Travelers: ${travelerCount}
 Additional Notes: ${notes || 'None'}
+
+CRITICAL: Keep descriptions and tips extremely concise (1-2 sentences maximum). We need the response to generate as quickly as possible.
 
 Return ONLY valid JSON with no markdown formatting, no preamble, and no code fences.
 The response schema MUST follow this structure:
