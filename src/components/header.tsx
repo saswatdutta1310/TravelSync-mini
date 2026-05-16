@@ -31,7 +31,7 @@ export default function Header({ children }: { children?: ReactNode }) {
           </Link>
         </Button>
         <ThemeToggle />
-        { user && <UserNav user={user} /> }
+        { user && <UserNav user={user} isSidebarOpen={false} /> }
       </div>
     </header>
   );
