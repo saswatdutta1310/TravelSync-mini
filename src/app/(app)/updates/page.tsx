@@ -36,7 +36,13 @@ function UpdatesSkeleton() {
             <Skeleton className="h-4 w-1/3" />
           </CardHeader>
           <CardContent>
-            <Skeleton className="h-8 w-full" />
+            <div className="flex items-center justify-between">
+              <Skeleton className="h-4 w-40" />
+              <div className="flex -space-x-2">
+                <Skeleton className="h-8 w-8 rounded-full border-2 border-background" />
+                <Skeleton className="h-8 w-8 rounded-full border-2 border-background" />
+              </div>
+            </div>
           </CardContent>
         </Card>
       ))}

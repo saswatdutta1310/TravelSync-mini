@@ -12,17 +12,24 @@ import { StaggerContainer, StaggerItem, ScaleOnHover } from '@/components/ui/mot
 import { EmptyState } from '@/components/empty-state';
 import { ErrorState } from '@/components/error-state';
 
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+
 function TripListSkeleton() {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: 4 }).map((_, i) => (
-        <div key={i} className="space-y-3">
-          <Skeleton className="h-48 w-full" />
-          <div className="space-y-2">
+        <Card key={i} className="overflow-hidden">
+          <CardHeader className="p-0">
+            <Skeleton className="h-48 w-full rounded-none" />
+          </CardHeader>
+          <CardContent className="p-4 space-y-3">
             <Skeleton className="h-6 w-3/4" />
             <Skeleton className="h-4 w-1/2" />
-          </div>
-        </div>
+          </CardContent>
+          <CardFooter className="p-4 pt-0">
+            <Skeleton className="h-4 w-1/3" />
+          </CardFooter>
+        </Card>
       ))}
     </div>
   );

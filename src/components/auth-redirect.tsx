@@ -5,33 +5,47 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
 import { LoadingState } from '@/components/loading-state';
 
-const AUTH_ROUTES = ['/login', '/signup', '/'];
-const PROTECTED_ROUTES = ['/dashboard', '/budget', '/trips/new', '/updates'];
+const PUBLIC_ROUTES = ['/', '/login', '/signup'];
 
 export function AuthRedirect({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
 
-  const isAuthRoute = AUTH_ROUTES.includes(pathname);
-  const isProtectedRoute = PROTECTED_ROUTES.some(route =>
-    pathname.startsWith(route)
-  );
+  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
+  const isAuthRoute = ['/login', '/signup', '/'].includes(pathname);
 
   useEffect(() => {
     if (loading) {
-      return; // Wait until loading is complete before doing anything
+      return;
     }
 
     if (user && isAuthRoute) {
       router.replace('/dashboard');
-    } else if (!user && isProtectedRoute) {
+    } else if (!user && !isPublicRoute) {
       router.replace('/');
     }
-  }, [user, loading, router, pathname, isAuthRoute, isProtectedRoute]);
+  }, [user, loading, router, pathname, isAuthRoute, isPublicRoute]);
 
   // While loading, or if redirection is about to happen, don't render children
+  if (loading || (user && isAuthRoute) || (!user && !isPublicRoute)) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+           <p className="text-sm text-muted-foreground animate-pulse">Loading TravelSync...</p>
+        </div>
+      </div>
+    );
   if (loading || (user && isAuthRoute) || (!user && isProtectedRoute)) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+          <p className="text-sm text-muted-foreground animate-pulse">Loading TravelSync...</p>
+        </div>
+      </div>
+    );
     return <LoadingState message="Authenticating..." className="h-screen w-full" />;
   }
 

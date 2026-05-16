@@ -21,9 +21,15 @@ function BudgetListSkeleton() {
             <Skeleton className="h-6 w-1/2" />
             <Skeleton className="h-4 w-1/3" />
           </CardHeader>
-          <CardContent>
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-8 w-1/4 mt-2" />
+          <CardContent className="space-y-4">
+            <div className="flex justify-between">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-24" />
+            </div>
+            <Skeleton className="h-2 w-full rounded-full" />
+            <div className="flex justify-end">
+              <Skeleton className="h-4 w-32" />
+            </div>
           </CardContent>
         </Card>
       ))}

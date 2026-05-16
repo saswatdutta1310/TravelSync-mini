@@ -30,16 +30,32 @@ import { useToast } from '@/hooks/use-toast';
 
 function TripDetailSkeleton() {
   return (
-    <div className="space-y-8">
+    <div className="mx-auto max-w-7xl space-y-8">
       <Skeleton className="h-80 w-full rounded-2xl" />
-      <div className="space-y-4">
-        <Skeleton className="h-10 w-3/4" />
-        <Skeleton className="h-6 w-1/2" />
-      </div>
+      
       <div className="space-y-6">
-        <Skeleton className="h-40 w-full" />
-        <Skeleton className="h-40 w-full" />
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <Skeleton className="h-6 w-32" />
+          <Skeleton className="h-6 w-48" />
+        </div>
       </div>
+
+      <Card>
+        <CardHeader>
+          <Skeleton className="h-8 w-64" />
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="border-b pb-4 last:border-0 last:pb-0">
+              <Skeleton className="h-10 w-full mb-2" />
+              <div className="pl-4 space-y-2">
+                <Skeleton className="h-4 w-3/4" />
+                <Skeleton className="h-4 w-1/2" />
+              </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
     </div>
   );
 }
