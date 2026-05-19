@@ -341,4 +341,4 @@ export const SidebarSeparator = React.forwardRef<
   />
 ));
 SidebarSeparator.displayName = 'SidebarSeparator';
-export { Sheet, SheetTrigger, SheetContent, SheetTitle } from './sheet';
+

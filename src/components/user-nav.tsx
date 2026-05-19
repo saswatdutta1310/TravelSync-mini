@@ -12,7 +12,6 @@ import {
 import { useAuth } from '@/context/auth-context';
 import { CreditCard, LogOut, Settings, User as UserIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import type { User } from '@/lib/types';
 
 
